@@ -5,6 +5,8 @@ MAINTAINER Jamie Wolff <jwolff@ucar.edu> or Michelle Harrold <harrold@ucar.edu>
 ENV WRF_VERSION 3.9.1.1
 ENV WPS_VERSION 3.9.1
 ENV UPP_VERSION 3.2
+ENV CMODE 32 # input 32 to WRF configure script SMPAR GNU (gfortran/gcc)
+ENV NEST 1   # input 1 to WRF to select nested
 
 #SERIAL BUILD
 RUN yum -y update
@@ -37,7 +39,7 @@ RUN echo export LDFLAGS="-lm" >> /etc/bashrc \
  && echo setenv PATH "/usr/lib64/bin:$PATH" >> /etc/csh.cshrc
 #
 # Build WRF first
-# input 34 and 1 to configure script alternative line = && echo -e "32\r1\r" | ./configure
+# 
 # 
 RUN pwd \ 
  && mkdir netcdf_links \
@@ -48,7 +50,7 @@ RUN pwd \
  && export JASPERINC=/usr/include/jasper/ \
  && export JASPERLIB=/usr/lib64/ \
  && cd ./WRFV3 \
- && ./configure <<< $'32\r1\r' \
+ && ./configure <<< $'${CMODE}\r${NEST}\r' \
  && /bin/csh ./compile em_real > compile_wrf_arw_opt32.1.log 2>&1
 #
 # Build UPP second
