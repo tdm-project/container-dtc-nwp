@@ -50,7 +50,7 @@ RUN pwd \
  && export JASPERINC=/usr/include/jasper/ \
  && export JASPERLIB=/usr/lib64/ \
  && cd ./WRFV3 \
- && ./configure <<< $'${CMODE}\r${NEST}\r' \
+ && ./configure <<< $'32\r1\r' \
  && /bin/csh ./compile em_real > compile_wrf_arw_opt32.1.log 2>&1
 #
 # Build UPP second

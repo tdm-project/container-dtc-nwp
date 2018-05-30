@@ -6,7 +6,7 @@
 # ./run-dtc-nwp -np 2 -slots 2 -face eth0 -skip wps -namelist /path/to/namelist -skip real
 
 #Initalize options
-num_procs=4
+num_procs=16
 process_perhost=1
 iface=eth0
 skip_wps=false
